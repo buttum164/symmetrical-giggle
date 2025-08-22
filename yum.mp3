@@ -1,0 +1,27 @@
+def generate_class_code(class_name, fields):
+    """
+    Generates Python class code as a string.
+    
+    Parameters:
+    - class_name: str, the name of the class
+    - fields: list of tuples (field_name, field_type)
+    
+    Returns:
+    - code: str, the generated class code
+    """
+    code = f"class {class_name}:\n"
+    code += "    def __init__(self"
+    for field, _type in fields:
+        code += f", {field}: {_type}"
+    code += "):\n"
+    for field, _type in fields:
+        code += f"        self.{field} = {field}\n"
+    if not fields:
+        code += "        pass\n"
+    return code
+
+# Example usage:
+if __name__ == "__main__":
+    class_name = "User"
+    fields = [("name", "str"), ("age", "int")]
+    print(generate_class_code(class_name, fields))
